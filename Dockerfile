@@ -1,4 +1,4 @@
-FROM openjdk:8
+FROM openjdk:11
 
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -36,24 +36,15 @@ RUN npm install -g npm@latest \
     && npm cache clean --force
 
 ## Docker Compose
-RUN curl -sL https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose \
+RUN curl -sL "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
     && chmod +x /usr/local/bin/docker-compose
 
 ## Docker
-RUN curl -s https://download.docker.com/linux/static/stable/`uname -m`/docker-17.12.1-ce.tgz \
+RUN curl -sL "https://download.docker.com/linux/static/stable/$(uname -m)/docker-19.03.9.tgz" \
     | tar xzvf - -C /usr/local/bin/ --strip-components=1
 
-## PhantomJS, deprecated - remove when all builds have migrated to ChromeHeadless
-RUN curl -sL https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 \
-    | tar xjvf - -C /usr/local/bin/ phantomjs-2.1.1-linux-x86_64/bin/phantomjs --strip-components=2
-
-## Rancher Compose
-RUN curl -L https://github.com/rancher/rancher-compose/releases/download/v0.12.5/rancher-compose-linux-amd64-v0.12.5.tar.xz \
-    | tar xJvf -  --strip-components=2 -C /usr/local/bin/ \
-    && chmod +x /usr/local/bin/rancher-compose
-
 RUN wget \
-        "https://dl.bintray.com/sonarsource/SonarQube/org/sonarsource/scanner/cli/sonar-scanner-cli/3.3.0.1492/sonar-scanner-cli-3.3.0.1492.zip" \
+        "https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.3.0.2102-linux.zip" \
         -O ./sonar-scanner.zip; \
     jar xf sonar-scanner.zip; \
     mv sonar-scanner-* sonar-scanner; \
