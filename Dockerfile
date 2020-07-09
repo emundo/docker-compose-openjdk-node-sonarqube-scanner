@@ -23,6 +23,7 @@ RUN apt-get install -y --no-install-recommends \
         build-essential \
         ca-certificates \
         google-chrome-unstable \
+        libxss1 \
         gnupg2 \
         nodejs \
         software-properties-common \
