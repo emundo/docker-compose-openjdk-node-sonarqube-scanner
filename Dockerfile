@@ -22,7 +22,7 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub \
 RUN apt-get install -y --no-install-recommends \
         build-essential \
         ca-certificates \
-        google-chrome-unstable \
+        google-chrome-stable \
         libxss1 \
         gnupg2 \
         nodejs \
