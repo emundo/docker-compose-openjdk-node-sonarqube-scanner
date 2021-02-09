@@ -7,8 +7,8 @@ RUN apt-get update \
 # add Node.js source
 RUN curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key \
         | apt-key add - \
-    && sh -c 'echo "deb https://deb.nodesource.com/node_10.x stretch main" > /etc/apt/sources.list.d/nodesource.list' \
-    && sh -c 'echo "deb-src https://deb.nodesource.com/node_10.x stretch main" >> /etc/apt/sources.list.d/nodesource.list' \
+    && sh -c 'echo "deb https://deb.nodesource.com/node_12.x stretch main" > /etc/apt/sources.list.d/nodesource.list' \
+    && sh -c 'echo "deb-src https://deb.nodesource.com/node_12.x stretch main" >> /etc/apt/sources.list.d/nodesource.list' \
     && apt-get update -o Dir::Etc::sourcelist="sources.list.d/nodesource.list" \
         -o Dir::Etc::sourceparts="-" -o APT::Get::List-Cleanup="0"
 
